@@ -184,9 +184,9 @@
     padding: 12px 10px 24px;
     max-width: 100%;
     justify-content: flex-start;
+    min-height: auto;          /* ✨ không ép full màn hình */
   }
 
-  /* Header không fixed nữa, nằm gọn trên đầu card */
   .header-top {
     position: static;
     top: auto;
@@ -204,6 +204,7 @@
   .screen-wrapper {
     height: auto;
     max-height: none;
+    min-height: auto;          /* ✨ không ép full màn hình */
     margin-top: 0;
     max-width: 100%;
   }
@@ -211,6 +212,7 @@
   .screen {
     position: relative;
     height: auto;
+    min-height: auto;          /* ✨ không ép full màn hình */
     padding: 18px 14px 18px;
     border-radius: 18px;
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
@@ -225,7 +227,6 @@
     height: auto;
   }
 
-  /* Avatar nhỏ lại cho vừa màn hình */
   .avatar-wrapper {
     width: 190px;
     height: 190px;
@@ -260,6 +261,7 @@
     width: 100%;
   }
 }
+
 
 
 
@@ -533,23 +535,6 @@
       font-weight: 600;
       color: #ec4899;
     }
-    /* Ép màn hình 1 (và các màn khác) cao gần bằng màn hình điện thoại */
-@media (max-width: 780px) {
-  .app {
-    min-height: 100vh;
-  }
-
-  .screen-wrapper {
-    min-height: calc(100vh - 40px);
-  }
-
-  .screen {
-    min-height: calc(100vh - 40px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
 
   </style>
 </head>
