@@ -178,13 +178,14 @@
   body {
     overflow-x: hidden;
     overflow-y: auto;
+    min-height: 100vh;
   }
 
   .app {
-    padding: 12px 10px 24px;
+    padding: 12px 10px 16px;
     max-width: 100%;
     justify-content: flex-start;
-    min-height: auto;          /* ✨ không ép full màn hình */
+    min-height: 100vh;   /* chỉ cao bằng màn hình, không dư thêm */
   }
 
   .header-top {
@@ -199,23 +200,29 @@
     box-shadow: none;
     flex-direction: column;
     gap: 4px;
+    text-align: center;
+    justify-content: center;
   }
 
   .screen-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
     height: auto;
     max-height: none;
-    min-height: auto;          /* ✨ không ép full màn hình */
-    margin-top: 0;
-    max-width: 100%;
+    margin: 0 auto;
   }
 
+  /* Mỗi screen là 1 card block, cao đúng theo nội dung */
   .screen {
     position: relative;
+    inset: auto;
     height: auto;
-    min-height: auto;          /* ✨ không ép full màn hình */
+    min-height: auto;
     padding: 18px 14px 18px;
     border-radius: 18px;
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+    transform: none;
   }
 
   .screen-inner {
@@ -227,6 +234,7 @@
     height: auto;
   }
 
+  /* Avatar nhỏ lại cho vừa màn hình */
   .avatar-wrapper {
     width: 190px;
     height: 190px;
@@ -251,26 +259,13 @@
     border-radius: 22px;
     overflow: hidden;
     background: #020617;
-    height: auto;         /* 👈 không dùng height: 100% nữa */
+    height: auto;
     min-height: 230px;
   }
 
   .slide {
-    position: relative;   /* 👈 bỏ absolute trên mobile */
-    inset: auto;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-  }
-
-  .slide.active {
-    opacity: 1;
-  }
-
-  .slide img {
-    width: 100%;
-    height: auto;         /* 👈 cho tự cao theo tỉ lệ ảnh */
-    object-fit: cover;
-    transform: none;      /* nếu muốn khỏi zoom nữa thì để dòng này */
+    position: absolute;
+    inset: 0;
   }
 
   .bottom-bar {
@@ -285,10 +280,6 @@
     width: 100%;
   }
 }
-
-
-
-
 
     /* Avatar Bae – to hơn */
   .avatar-wrapper {
@@ -877,15 +868,21 @@
     const screens = document.querySelectorAll('.screen');
     const dots = document.querySelectorAll('.step-dot');
 
-    function showScreen(id) {
-      screens.forEach(s => s.classList.remove('active'));
-      document.getElementById('screen-' + id).classList.add('active');
+   function showScreen(id) {
+  screens.forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
 
-      dots.forEach(d => {
-        d.classList.toggle('active', d.dataset.step === String(id));
-      });
-      
-    }
+  dots.forEach(d => {
+    d.classList.toggle('active', d.dataset.step === String(id));
+  });
+
+  // cuộn về đầu trang mỗi lần đổi màn
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
 
     document.addEventListener('click', (e) => {
       const next = e.target.closest('[data-next]');
