@@ -202,6 +202,22 @@
   .app {
     padding-top: 20px;
   }
+  .app {
+    min-height: 100vh;
+    padding-bottom: 24px;
+  }
+
+  .screen-wrapper {
+    margin-top: 70px; /* nếu đang nhiều hơn thì giảm xuống */
+    min-height: calc(100vh - 120px);
+  }
+
+  .screen {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 
