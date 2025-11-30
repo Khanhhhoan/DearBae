@@ -246,7 +246,31 @@
   }
 
   .slideshow {
-    min-height: 220px;
+    position: relative;
+    width: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #020617;
+    height: auto;         /* 👈 không dùng height: 100% nữa */
+    min-height: 230px;
+  }
+
+  .slide {
+    position: relative;   /* 👈 bỏ absolute trên mobile */
+    inset: auto;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .slide.active {
+    opacity: 1;
+  }
+
+  .slide img {
+    width: 100%;
+    height: auto;         /* 👈 cho tự cao theo tỉ lệ ảnh */
+    object-fit: cover;
+    transform: none;      /* nếu muốn khỏi zoom nữa thì để dòng này */
   }
 
   .bottom-bar {
