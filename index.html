@@ -175,50 +175,92 @@
     }
 
 @media (max-width: 780px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 
-  /* FIX: header cố định trên dt - không chạy tùm lum */
+  .app {
+    padding: 12px 10px 24px;
+    max-width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Header không fixed nữa, nằm gọn trên đầu card */
   .header-top {
-    position: fixed !important;
-    top: 10px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    background: #ffffffcc;
-    backdrop-filter: blur(10px);
-    padding: 6px 14px;
-    border-radius: 20px;
-    z-index: 9999;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-
-  /* Đẩy nội dung xuống một chút để không bị header che */
-  .screen-wrapper {
-    margin-top: 70px;
-  }
-
-  .screen {
-    padding-top: 26px;
-  }
-
-  .app {
-    padding-top: 20px;
-  }
-  .app {
-    min-height: 100vh;
-    padding-bottom: 24px;
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-bottom: 10px;
+    padding: 6px 10px;
+    border-radius: 16px;
+    background: transparent;
+    box-shadow: none;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .screen-wrapper {
-    margin-top: 70px; /* nếu đang nhiều hơn thì giảm xuống */
-    min-height: calc(100vh - 120px);
+    height: auto;
+    max-height: none;
+    margin-top: 0;
+    max-width: 100%;
   }
 
   .screen {
-    min-height: calc(100vh - 120px);
+    position: relative;
+    height: auto;
+    padding: 18px 14px 18px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+  }
+
+  .screen-inner {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
+    height: auto;
+  }
+
+  /* Avatar nhỏ lại cho vừa màn hình */
+  .avatar-wrapper {
+    width: 190px;
+    height: 190px;
+    margin: 0 auto 12px;
+  }
+
+  .hero-left {
+    text-align: center;
+  }
+
+  .hero-left p {
+    max-width: 100%;
+  }
+
+  .hero-meta {
+    justify-content: center;
+  }
+
+  .slideshow {
+    min-height: 220px;
+  }
+
+  .bottom-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .btn-row {
+    justify-content: center;
+    width: 100%;
   }
 }
+
 
 
 
