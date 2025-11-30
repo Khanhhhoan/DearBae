@@ -533,6 +533,24 @@
       font-weight: 600;
       color: #ec4899;
     }
+    /* Ép màn hình 1 (và các màn khác) cao gần bằng màn hình điện thoại */
+@media (max-width: 780px) {
+  .app {
+    min-height: 100vh;
+  }
+
+  .screen-wrapper {
+    min-height: calc(100vh - 40px);
+  }
+
+  .screen {
+    min-height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
   </style>
 </head>
 <body>
