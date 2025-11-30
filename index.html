@@ -174,25 +174,73 @@
       align-items: center;
     }
 
-    @media (max-width: 780px) {
-      .screen-wrapper {
-        height: auto;
-        max-height: none;
-      }
-      .screen {
-        position: relative;
-        height: auto;
-      }
-      .screen-inner {
-        grid-template-columns: 1fr;
-        height: auto;
-      }
-      /* THU NHỎ LẠI RIÊNG CHO MOBILE */
-      .avatar-wrapper {
-       width: 220px;
-       height: 220px;
+@media (max-width: 780px) {
+  body {
+    overflow-y: auto;
   }
-    }
+
+  .app {
+    padding: 16px 10px 24px;
+    justify-content: flex-start;
+  }
+
+  .header-top {
+    position: static;
+    transform: none;
+    margin-bottom: 12px;
+  }
+
+  .screen-wrapper {
+    height: auto;
+    max-height: none;
+    margin-top: 0;
+  }
+
+  .screen {
+    position: relative;
+    height: auto;
+    padding: 20px 14px 18px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+  }
+
+  .screen-inner {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  /* Avatar thu nhẹ lại + canh giữa */
+  .avatar-wrapper {
+    width: 210px;
+    height: 210px;
+    margin: 0 auto 16px;
+  }
+
+  .hero-left {
+    text-align: center;
+  }
+
+  .hero-left p {
+    margin: 0 auto;
+  }
+
+  .hero-meta {
+    justify-content: center;
+  }
+
+  .bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .btn-row {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
 
     /* Avatar Bae – to hơn */
   .avatar-wrapper {
