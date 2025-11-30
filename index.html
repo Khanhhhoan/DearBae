@@ -474,21 +474,21 @@
       margin-top: 6px;
     }
 
-      .slideshow {
+   .slideshow {
     position: relative;
     width: 100%;
     border-radius: 22px;
     overflow: hidden;
     background: #020617;
-    height: auto;        /* không ép 100% nữa */
-    min-height: 230px;
+    height: 320px;      /* chiều cao cố định cho dt */
+    min-height: 320px;
   }
 
   .slide {
-    position: relative;  /* không absolute để khỏi bị xẹp */
-    inset: auto;
+    position: absolute;
+    inset: 0;
     opacity: 0;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.8s ease;
   }
 
   .slide.active {
@@ -497,9 +497,9 @@
 
   .slide img {
     width: 100%;
-    height: auto;        /* lấy chiều cao theo tỉ lệ ảnh */
-    object-fit: cover;
-    transform: none;
+    height: 100%;
+    object-fit: cover;  /* ảnh phủ full khung */
+    transform: scale(1.06);
   }
 
     .bottom-bar {
