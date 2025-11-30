@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chúc mừng tốt nghiệp Bae 🎓💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #ff6fa9;
+      --secondary: #7b5cff;
+      --bg: #0f172a;
+      --radius: 26px;
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #ffe4f2 0, #f3f6ff 45%, #e5ebff 100%);
+      color: #111827;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* Nền động nhẹ */
+    .bg-soft {
+      position: fixed;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, #ffc8dd 0, transparent 50%),
+        radial-gradient(circle at 100% 0%, #bde0fe 0, transparent 50%),
+        radial-gradient(circle at 0% 100%, #caffbf 0, transparent 50%),
+        radial-gradient(circle at 100% 100%, #ffafcc 0, transparent 50%);
+      opacity: 0.8;
+      mix-blend-mode: screen;
+      filter: blur(3px);
+      z-index: -2;
+      animation: floatBg 18s linear infinite alternate;
+    }
+
+    @keyframes floatBg {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(30px, -20px, 0) scale(1.05); }
+    }
+
+    .heart {
+      position: fixed;
+      color: #ff8fab;
+      opacity: 0;
+      animation: floatHeart 11s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(105vh) scale(0.6); opacity: 0; }
+      20% { opacity: 0.9; }
+      80% { opacity: 0.9; }
+      100% { transform: translateY(-10vh) scale(1.15); opacity: 0; }
+    }
+
+    /* nhiều tim hơn – chỉnh từng cái */
+    .heart.h1 { left: 5%;  font-size: 18px; animation-delay: 0s; }
+    .heart.h2 { left: 15%; font-size: 14px; animation-delay: 2s; }
+    .heart.h3 { left: 25%; font-size: 20px; animation-delay: 4s; }
+    .heart.h4 { left: 38%; font-size: 16px; animation-delay: 1.5s; }
+    .heart.h5 { left: 50%; font-size: 22px; animation-delay: 3.5s; }
+    .heart.h6 { left: 62%; font-size: 17px; animation-delay: 5s; }
+    .heart.h7 { left: 72%; font-size: 19px; animation-delay: 2.7s; }
+    .heart.h8 { left: 82%; font-size: 15px; animation-delay: 6s; }
+    .heart.h9 { left: 90%; font-size: 21px; animation-delay: 3.2s; }
+    .heart.h10 { left: 30%; font-size: 13px; animation-delay: 7s; }
+
+    .app {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 16px 32px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .header-top {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 12px;
+      color: #6b7280;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .badge-day {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #fdf2ff;
+      border: 1px solid rgba(255, 111, 169, 0.4);
+      color: #9f1239;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+
+    .badge-day span {
+      font-size: 14px;
+    }
+
+    /* Vùng màn hình */
+    .screen-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 720px; /* to hơn nữa */
+      max-height: calc(100vh - 80px);
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      background: #ffffffee;
+      border-radius: var(--radius);
+      box-shadow: 0 22px 44px rgba(15, 23, 42, 0.35);
+      padding: 30px 28px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
+      pointer-events: none;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      overflow: hidden;
+    }
+
+    .screen.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .screen::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(circle at 10% 0%, rgba(251, 113, 133, 0.16), transparent 55%),
+                  radial-gradient(circle at 90% 100%, rgba(129, 140, 248, 0.18), transparent 55%);
+      z-index: 0;
+    }
+
+    .screen-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 26px;
+      height: 100%;
+      align-items: center;
+    }
+
+    @media (max-width: 780px) {
+      .screen-wrapper {
+        height: auto;
+        max-height: none;
+      }
+      .screen {
+        position: relative;
+        height: auto;
+      }
+      .screen-inner {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      /* THU NHỎ LẠI RIÊNG CHO MOBILE */
+      .avatar-wrapper {
+       width: 220px;
+       height: 220px;
+  }
+    }
+
+    /* Avatar Bae – to hơn */
+  .avatar-wrapper {
+  position: relative;
+  width: 280px;   /* TO HƠN */
+  height: 280px;  /* TO HƠN */
+  border-radius: 999px;
+  padding: 5px;
+  background: conic-gradient(from 210deg, #f472b6, #38bdf8, #a5b4fc, #f472b6);
+  animation: spinBorder 12s linear infinite;
+  margin-bottom: 20px;
+}
+
+
+    @keyframes spinBorder {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      overflow: hidden;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+    }
+
+    .hero-left h1 {
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .hero-left h1 span.name {
+      background: linear-gradient(135deg, #f97316, #ec4899);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+
+    .hero-left p {
+      font-size: 15px;
+      color: #4b5563;
+      max-width: 430px;
+    }
+
+    .hero-meta {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .hero-meta span {
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+    }
+
+    /* text chung */
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    .text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #374151;
+    }
+
+    .text p + p {
+      margin-top: 8px;
+    }
+
+    .signature {
+      margin-top: 14px;
+      font-style: italic;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .signature span {
+      display: block;
+      margin-top: 2px;
+      font-weight: 600;
+      color: #ec4899;
+    }
+
+    /* slideshow màn hình 3 */
+    .slideshow {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #020617;
+      height: 100%;
+      min-height: 280px;
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.38);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.06);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent 65%);
+    }
+
+    .slide-caption {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 12px;
+      color: #e5e7eb;
+      font-size: 12px;
+    }
+
+    .slide-caption span.badge {
+      display: inline-flex;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      margin-bottom: 4px;
+    }
+
+    /* list memories */
+    .mem-list {
+      font-size: 13px;
+      color: #4b5563;
+      margin-top: 6px;
+    }
+
+    .mem-list li {
+      list-style: none;
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .mem-list li span {
+      margin-top: 2px;
+      font-size: 12px;
+    }
+
+    /* thanh bước */
+    .bottom-bar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .steps {
+      display: flex;
+      gap: 6px;
+    }
+
+    .step-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      border: 1px solid #d1d5db;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .step-dot.active {
+      background: linear-gradient(135deg, #f97316, #ec4899);
+      transform: scale(1.2);
+      border-color: transparent;
+    }
+
+    /* nút điều hướng */
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 16px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f97316, #ec4899);
+      color: white;
+      box-shadow: 0 12px 25px rgba(236, 72, 153, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(236, 72, 153, 0.55);
+      filter: brightness(1.04);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #6b7280;
+      border: 1px solid #e5e7eb;
+    }
+
+    .btn-ghost:hover {
+      filter: brightness(1.02);
+      transform: translateY(-1px);
+    }
+
+    .centered {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .emoji-big {
+      font-size: 42px;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: #ec4899;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-soft"></div>
+
+  <!-- tim bay nhiều hơn -->
+  <div class="heart h1">❤</div>
+  <div class="heart h2">❤</div>
+  <div class="heart h3">❤</div>
+  <div class="heart h4">❤</div>
+  <div class="heart h5">❤</div>
+  <div class="heart h6">❤</div>
+  <div class="heart h7">❤</div>
+  <div class="heart h8">❤</div>
+  <div class="heart h9">❤</div>
+  <div class="heart h10">❤</div>
+
+  <!-- NHẠC NỀN: file nằm trong thư mục /audio -->
+  <audio id="bgMusic" src="audio/Thats-So-True.mp3" autoplay loop></audio>
+
+  <div class="app">
+    <div class="header-top">
+      <div class="badge-day">
+        <span>🎓</span> GRADUATION DAY
+      </div>
+      <span>Made with love from anh dành cho Bae 💌</span>
+    </div>
+
+    <div class="screen-wrapper">
+
+      <!-- MÀN 1: WELCOME -->
+      <div class="screen active" id="screen-1">
+        <div class="screen-inner">
+          <div class="hero-left">
+            <div class="avatar-wrapper">
+              <div class="avatar-inner">
+                <!-- ĐỔI LINK ẢNH CHÂN DUNG BAE -->
+                <img src="img/1.jpg" alt="Bae xinh đẹp" />
+              </div>
+            </div>
+            <h1>Chúc mừng tốt nghiệp, <span class="name">Bae</span> 💐</h1>
+            <p>
+              Hôm nay Bae không chỉ tốt nghiệp, mà còn chính thức nâng cấp độ xịn xò
+              và dễ thương của mình lên một level mới luôn đó.
+            </p>
+            <div class="hero-meta">
+              <span>📍 Trường: Đại học Công nghiệp Thành phố Hồ Chí Minh</span>
+              <span>📚 Ngành: Ngôn Ngữ Anh</span>
+              <span>📅 Ngày tốt nghiệp: 01/12/2025</span>
+              <span>👤 Họ tên: Đỗ Thị Kim Phụng</span>
+
+            </div>
+          </div>
+          <div class="centered">
+            <div class="emoji-big">✨</div>
+            <div class="title">Món quà nhỏ anh làm riêng cho Bae</div>
+            <div class="text" style="font-size:13px; max-width:380px;">
+              Bấm nút bên dưới để mở từng “màn cảm xúc”.  
+              Mỗi màn là một phần tự hào, thương và lời chúc mà
+              <span class="highlight">anh muốn gửi cho Bae</span> trong ngày đặc biệt này.
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="steps">
+            <div class="step-dot active" data-step="1"></div>
+            <div class="step-dot" data-step="2"></div>
+            <div class="step-dot" data-step="3"></div>
+            <div class="step-dot" data-step="4"></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" data-next="2">
+              Bae bấm để bắt đầu nè 💖 →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÀN 2: LỜI CHÚC -->
+      <div class="screen" id="screen-2">
+        <div class="screen-inner">
+          <div>
+            <div class="title">Lời anh muốn nói với Bae 🥺</div>
+            <div class="text">
+              <p>
+                Anh biết em đã đi qua những ngày mệt mỏi, những lúc áp lực đè nặng mà vẫn mạnh mẽ bước tiếp.
+                Có những khoảnh khắc em cười cho anh yên tâm, dù trong lòng chắc là mệt lắm…
+                Nhưng em vẫn kiên trì, vẫn cố gắng, vẫn không bỏ cuộc
+              </p>
+               <p>
+                Và chính điều đó làm anh thương em nhiều hơn —
+                vì anh biết để đứng được ở hôm nay, em đã cố gắng rất nhiều, nhiều hơn những gì em từng nói
+              </p>
+              <p>
+                Em không chỉ giỏi, mà còn kiên trì và ấm áp nữa. Tốt nghiệp chỉ là một cột mốc,
+                còn tương lai phía trước của em chắc chắn còn sáng hơn rất nhiều.
+              </p>
+             
+              <p>
+                Sau này nếu có ngày Bae thấy mệt, thấy mọi thứ khó quá,
+                Bae nhớ là mình không phải đối mặt một mình đâu nha.
+                Phía sau em luôn có anh – đứa hơi ác nhưng love Bae thiệt lòng. 💗
+              </p>
+              <p>
+                Anh chúc em trên hành trình mới sẽ luôn bình an, gặp được nhiều cơ hội tốt
+                và làm được những điều em mơ ước. Và nếu được, cho anh đi cạnh em thiệt lâu,
+                không chỉ ở ngày tốt nghiệp hôm nay mà còn ở nhiều cột mốc sau này nữa. 💌
+              </p>
+            </div>
+            <div class="signature">
+              Từ tận đáy lòng,
+              <span>Anhiu của Bae 🫶</span>
+            </div>
+          </div>
+          <div class="centered">
+            <div class="emoji-big">💭</div>
+            <div class="text" style="font-size:13px; max-width:300px;">
+              Nếu có lúc nào đó Bae nghi ngờ bản thân,  
+              Bae nhớ là luôn có một người ở đây
+              <span class="highlight">tự hào về Bae hơn chính Bae nghĩ</span>.
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="steps">
+            <div class="step-dot" data-step="1"></div>
+            <div class="step-dot active" data-step="2"></div>
+            <div class="step-dot" data-step="3"></div>
+            <div class="step-dot" data-step="4"></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" data-prev="1">← Quay lại</button>
+            <button class="btn btn-primary" data-next="3">
+              Bae xem tiếp nha →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÀN 3: ẢNH & KỶ NIỆM (6 ảnh) -->
+      <div class="screen" id="screen-3">
+        <div class="screen-inner">
+          <div>
+            <div class="title">Những khoảnh khắc với Bae 📸</div>
+            <ul class="mem-list">
+              <li>
+                <span>💗</span>
+                <div>
+                  Có những lúc Bae mệt hay buồn, rồi than với anh vài câu…  
+      nhưng sau đó vẫn cố gắng và nở nụ cười.  
+      Nhìn vậy thôi mà anh thương Bae vô cùng.
+                </div>
+              </li>
+              <li>
+                <span>🧠</span>
+                <div>
+                  Bae thông minh, nhẹ nhàng và luôn kiên nhẫn với anh —  
+      từ mấy chuyện học hành cho đến những câu chuyện vu vơ hai đứa hay kể cho nhau nghe.
+                </div>
+              </li>
+              <li>
+                <span>⏳</span>
+                <div>
+                 Rồi những lúc hai đứa đi chơi, ăn uống, chụp hình,  
+      hoặc chỉ đơn giản là ngồi cạnh nhau…  
+      đều trở thành những kỷ niệm mà anh trân trọng nhất.
+                </div>
+              </li>
+              <li>
+                <span>🌟</span>
+                <div>
+                   Và mỗi nụ cười của Bae — dù là lúc học hay lúc đi chơi —  
+      đều làm anh cảm thấy may mắn vì được đi cùng Bae một đoạn thanh xuân đẹp như vậy.
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="slideshow" id="slideshow">
+            <!-- SLIDE 1 -->
+            <div class="slide active">
+              <img src="img/5.jpg" alt="Bae 1" />
+              <div class="slide-overlay"></div>
+              <div class="slide-caption">
+                <span class="badge">Day one</span>
+                <div>
+                  Khúc này chu mỏ củm củm dể thươnggg
+                </div>
+              </div>
+            </div>
+            <!-- SLIDE 2 -->
+            <div class="slide">
+              <img src="img/7.jpg" alt="Bae 2" />
+              <div class="slide-overlay"></div>
+              <div class="slide-caption">
+                <span class="badge">In the middle</span>
+                <div>
+                  Nhìn Bae giống công chúa leo câyy
+                </div>
+              </div>
+            </div>
+            <!-- SLIDE 3 -->
+            <div class="slide">
+              <img src="img/2.jpg" alt="Bae 3" />
+              <div class="slide-overlay"></div>
+              <div class="slide-caption">
+                <span class="badge">Study mode</span>
+                <div>
+                  Đi chụp hình pho to bót chạy vòng vòng mới có nè
+                </div>
+              </div>
+            </div>
+            <!-- SLIDE 4 -->
+            <div class="slide">
+              <img src="img/3.jpg" alt="Bae 4" />
+              <div class="slide-overlay"></div>
+              <div class="slide-caption">
+                <span class="badge">Little break</span>
+                <div>
+                  Lạnh bà cố mà phải cườii mĩmmm
+                </div>
+              </div>
+            </div>
+            <!-- SLIDE 5 -->
+            <div class="slide">
+              <img src="img/4.jpg" alt="Bae 5" />
+              <div class="slide-overlay"></div>
+              <div class="slide-caption">
+                <span class="badge">With anh</span>
+                <div>
+                  Chơi vui có cả hình lưu niệm lunn mà
+                </div>
+              </div>
+            </div>
+            <!-- SLIDE 6 -->
+            <div class="slide">
+              <img src="img/6.jpg" alt="Bae 6" />
+              <div class="slide-overlay"></div>
+              <div class="slide-caption">
+                <span class="badge">Graduation day</span>
+                <div>
+                  Uii ngại !!!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="steps">
+            <div class="step-dot" data-step="1"></div>
+            <div class="step-dot" data-step="2"></div>
+            <div class="step-dot active" data-step="3"></div>
+            <div class="step-dot" data-step="4"></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" data-prev="2">← Quay lại</button>
+            <button class="btn btn-primary" data-next="4">
+              Màn cuối nè →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÀN 4: KẾT + LỜI HẸN -->
+      <div class="screen" id="screen-4">
+        <div class="screen-inner">
+          <div class="centered">
+            <div class="emoji-big">🎉</div>
+            <div class="title">Chúc mừng Bae chính thức “nâng cấp” 🎓</div>
+            <div class="text" style="max-width:380px; font-size:14px;">
+              Cảm ơn em vì đã không bỏ cuộc, vì đã luôn cố gắng hết mình.
+              Anh không cần em phải hoàn hảo, anh chỉ cần em vẫn là chính em –
+              cô gái vừa mạnh mẽ vừa mềm mại, vừa bướng vừa dễ thương mà anh thương mỗi ngày.
+            </div>
+          </div>
+          <div class="centered">
+            <div class="text" style="max-width:360px; font-size:13px;">
+              Anh hy vọng sau này, mỗi lần Bae mở lại món quà nhỏ này,  
+              Bae sẽ nhớ rằng ở đâu đó luôn có một người
+              <span class="highlight">rất tự hào về Bae</span>,  
+              và vẫn muốn nắm tay Bae đi qua thêm thật nhiều cột mốc nữa –
+              không chỉ riêng ngày tốt nghiệp hôm nay.
+            </div>
+            <div class="signature">
+              Hẹn Bae ở những cột mốc tiếp theo,
+              <span>Anhiu của Bae 💘</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="steps">
+            <div class="step-dot" data-step="1"></div>
+            <div class="step-dot" data-step="2"></div>
+            <div class="step-dot" data-step="3"></div>
+            <div class="step-dot active" data-step="4"></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" data-prev="3">← Xem lại</button>
+            <button class="btn btn-primary" data-next="1">
+              Xem lại từ đầu 🔁
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Chuyển màn
+    const screens = document.querySelectorAll('.screen');
+    const dots = document.querySelectorAll('.step-dot');
+
+    function showScreen(id) {
+      screens.forEach(s => s.classList.remove('active'));
+      document.getElementById('screen-' + id).classList.add('active');
+
+      dots.forEach(d => {
+        d.classList.toggle('active', d.dataset.step === String(id));
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      const next = e.target.closest('[data-next]');
+      const prev = e.target.closest('[data-prev]');
+
+      if (next) {
+        const id = next.getAttribute('data-next');
+        showScreen(id);
+      }
+      if (prev) {
+        const id = prev.getAttribute('data-prev');
+        showScreen(id);
+      }
+    });
+
+    // Tự động phát nhạc (trình duyệt nào chặn thì Bae chỉ cần chạm 1 cái là chạy)
+    const bgMusic = document.getElementById('bgMusic');
+    window.addEventListener('load', () => {
+      bgMusic.play().catch(() => {
+        // nếu bị chặn autoplay thì lần click đầu tiên trên trang sẽ phát
+        const clickHandler = () => {
+          bgMusic.play().catch(() => {});
+          document.removeEventListener('click', clickHandler);
+        };
+        document.addEventListener('click', clickHandler);
+      });
+    });
+
+    // slideshow 6 ảnh
+    const slides = document.querySelectorAll('.slide');
+    let slideIndex = 0;
+    function nextSlide() {
+      if (!slides.length) return;
+      slides[slideIndex].classList.remove('active');
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }
+    setInterval(nextSlide, 4500);
+  </script>
+</body>
+</html>
