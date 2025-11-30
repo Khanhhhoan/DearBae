@@ -860,6 +860,10 @@
       dots.forEach(d => {
         d.classList.toggle('active', d.dataset.step === String(id));
       });
+       window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
     }
 
     document.addEventListener('click', (e) => {
